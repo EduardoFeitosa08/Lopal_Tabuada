@@ -31,6 +31,8 @@ public class Tabuada {
 	}
 
 	public void mostrarTabuada() {
+		
+		//While é para quando algo acontecer enquanto outra está acontecendo, nesse caso enquanto ocorre a multiplicação, o minimo multiplicador será somado com 1
 		while (minimoMultiplicador <= maximoMultiplicador) {
 			double produto = multiplicando * minimoMultiplicador;
 			System.out.println(multiplicando + " X " + minimoMultiplicador + " = " + produto);
