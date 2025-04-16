@@ -1,11 +1,16 @@
 package br.dev.eduardo.tabuada.giu;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import br.dev.eduardo.tabuada.model.Tabuada;
 
 public class TelaTabuada {
 	
@@ -42,8 +47,9 @@ public class TelaTabuada {
 		
 		JFrame tela = new JFrame();
 		tela.setTitle("Tabuada");
-		tela.setSize(400, 700);
+		tela.setSize(290, 700);
 		tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		tela.setResizable(false);
 		
 		// Faz o layout ser livre, o dev que escolhe onde ficará (quanto maior o y, mais pra baixo estará o conteudo, e quanto menor o y, o conteudo irá subir)
 		tela.setLayout(null);
@@ -72,14 +78,16 @@ public class TelaTabuada {
 		
 		buttonCalcular = new JButton();
 		buttonCalcular.setText("CALCULAR");
-		buttonCalcular.setBounds(20, 130, 130, 30);
+		buttonCalcular.setBounds(20, 130, 110, 30);
 		
 		buttonLimpar = new JButton();
 		buttonLimpar.setText("LIMPAR");
-		buttonLimpar.setBounds(170, 130, 130, 30);
+		buttonLimpar.setBounds(140, 130, 110, 30);
 		
-		scrollTabuada = new JScrollPane();
-		scrollTabuada.setBounds(20, 180, 300, 450);
+		//Criação do objeto scroll
+		
+		scrollTabuada = new JScrollPane(listTabuada);
+		scrollTabuada.setBounds(20, 180, 230, 450);
 		
 		// Obtemos o painel de conteudo (ContentPane) e adicionamos o labelMultiplicando nesse painel
 		tela.getContentPane().add(labelMultiplicando);
@@ -94,6 +102,46 @@ public class TelaTabuada {
 		tela.getContentPane().add(buttonLimpar);
 		
 		tela.getContentPane().add(scrollTabuada);
+		
+		
+		//Adicionar ouvintes de evento aos botões
+		buttonCalcular.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				Tabuada tabuada = new Tabuada();
+				
+				//Double.valueOf() serve para converter uma string para double
+				
+				String multiplicando = textMultiplicando.getText();
+				double multiplicandoDouble = Double.valueOf(multiplicando);
+				tabuada.setMultiplicando(multiplicandoDouble);
+				
+				String minimoMultiplicando = textMinimoMultiplicador.getText();
+				double minimoMultiplicandoDouble = Double.valueOf(minimoMultiplicando);
+				tabuada.setMinimoMultiplicador(minimoMultiplicandoDouble);
+				
+				String maximoMultiplicando = textMaximoMultiplicador.getText();
+				double maximoMultiplicandoDouble = Double.valueOf(maximoMultiplicando);
+				tabuada.setMaximoMultiplicador(maximoMultiplicandoDouble);
+				
+				tabuada.mostrarTabuada();
+			}
+		});
+		
+		buttonLimpar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				textMultiplicando.setText("");
+				textMinimoMultiplicador.setText("");
+				textMaximoMultiplicador.setText("");
+				textMultiplicando.requestFocus();
+			}
+		});
+		
 		
 		// Essa linha deve ser a ultima linha desse método
 		tela.setVisible(true);

@@ -32,6 +32,12 @@ public class Tabuada {
 
 	public void mostrarTabuada() {
 		
+		double tamanho = (maximoMultiplicador - minimoMultiplicador) + 1;
+		
+		//(int) está transformando o tamanho que é um double em um int
+		
+		String[] tabuada = new String[(int) tamanho];
+		
 		//While é para quando algo acontecer enquanto outra está acontecendo, nesse caso enquanto ocorre a multiplicação, o minimo multiplicador será somado com 1
 		while (minimoMultiplicador <= maximoMultiplicador) {
 			double produto = multiplicando * minimoMultiplicador;
