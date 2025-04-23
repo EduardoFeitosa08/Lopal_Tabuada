@@ -10,9 +10,6 @@ public class Main {
 		TelaTabuada tela = new TelaTabuada();
 		tela.criarTelaTabuada();
 		
-		TelaTabuada tela2 = new TelaTabuada();
-		tela2.criarTelaTabuada();
-		
 		Menu m1 = new Menu();
 		
 	}

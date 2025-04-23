@@ -84,6 +84,8 @@ public class TelaTabuada {
 		buttonLimpar.setText("LIMPAR");
 		buttonLimpar.setBounds(140, 130, 110, 30);
 		
+		listTabuada = new JList();
+		
 		//Criação do objeto scroll
 		
 		scrollTabuada = new JScrollPane(listTabuada);
@@ -126,7 +128,9 @@ public class TelaTabuada {
 				double maximoMultiplicandoDouble = Double.valueOf(maximoMultiplicando);
 				tabuada.setMaximoMultiplicador(maximoMultiplicandoDouble);
 				
-				tabuada.mostrarTabuada();
+				String[] tabuadaResultado = tabuada.mostrarTabuada();
+				
+				listTabuada.setListData(tabuadaResultado);
 			}
 		});
 		
@@ -139,6 +143,12 @@ public class TelaTabuada {
 				textMinimoMultiplicador.setText("");
 				textMaximoMultiplicador.setText("");
 				textMultiplicando.requestFocus();
+				
+				String[] apagar = {""};
+				
+				listTabuada.setListData(apagar);
+				
+				listTabuada.setListData(new String[0]);
 			}
 		});
 		

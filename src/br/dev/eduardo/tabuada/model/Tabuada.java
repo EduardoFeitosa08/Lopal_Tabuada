@@ -30,21 +30,28 @@ public class Tabuada {
 		return maximoMultiplicador;
 	}
 
-	public void mostrarTabuada() {
+	public String[] mostrarTabuada() {
 		
-		double tamanho = (maximoMultiplicador - minimoMultiplicador) + 1;
+		double tamanho = maximoMultiplicador - minimoMultiplicador + 1;
 		
 		//(int) está transformando o tamanho que é um double em um int
 		
 		String[] tabuada = new String[(int) tamanho];
 		
+		int indice = 0;
+		
 		//While é para quando algo acontecer enquanto outra está acontecendo, nesse caso enquanto ocorre a multiplicação, o minimo multiplicador será somado com 1
 		while (minimoMultiplicador <= maximoMultiplicador) {
 			double produto = multiplicando * minimoMultiplicador;
-			System.out.println(multiplicando + " X " + minimoMultiplicador + " = " + produto);
-			minimoMultiplicador = minimoMultiplicador + 1;
+			tabuada[indice] = multiplicando + " X " + minimoMultiplicador + " = " + produto; 
+			
+			//++ é um operador de incremento, aumentando 1 ou +=2 para aumentar 2, a mesma coisa para --
+			minimoMultiplicador++;
+			indice++;
 		}
-
+		
+		return tabuada;
+		
 	}
 
 }
